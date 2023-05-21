@@ -1,0 +1,14 @@
+[
+  { "id": 1, "province_id": 6, "name": "Kabupaten Bengkalis" },
+  { "id": 2, "province_id": 6, "name": "Kabupaten Indragiri Hilir" },
+  { "id": 3, "province_id": 6, "name": "Kabupaten Indragiri Hulu" },
+  { "id": 4, "province_id": 6, "name": "Kabupaten Kampar" },
+  { "id": 5, "province_id": 6, "name": "Kabupaten Kepulauan Meranti" },
+  { "id": 6, "province_id": 6, "name": "Kabupaten Kuantan Singingi" },
+  { "id": 7, "province_id": 6, "name": "Kabupaten Pelalawan" },
+  { "id": 8, "province_id": 6, "name": "Kabupaten Rokan Hilir" },
+  { "id": 9, "province_id": 6, "name": "Kabupaten Rokan Hulu" },
+  { "id": 10, "province_id": 6, "name": "Kabupaten Siak" },
+  { "id": 11, "province_id": 6, "name": "Kota Dumai" },
+  { "id": 12, "province_id": 6, "name": "Kota Pekanbaru" }
+]
