@@ -1,0 +1,13 @@
+[
+  { "id": 1, "province_id": 8, "name": "Kabupaten Batanghari" },
+  { "id": 2, "province_id": 8, "name": "Kabupaten Bungo" },
+  { "id": 3, "province_id": 8, "name": "Kabupaten Kerinci" },
+  { "id": 4, "province_id": 8, "name": "Kabupaten Merangin" },
+  { "id": 5, "province_id": 8, "name": "Kabupaten Muaro Jambi" },
+  { "id": 6, "province_id": 8, "name": "Kabupaten Sarolangun" },
+  { "id": 7, "province_id": 8, "name": "Kabupaten Tanjung Jabung Barat" },
+  { "id": 8, "province_id": 8, "name": "Kabupaten Tanjung Jabung Timur" },
+  { "id": 9, "province_id": 8, "name": "Kabupaten Tebo" },
+  { "id": 10, "province_id": 8, "name": "Kota Jambi" },
+  { "id": 11, "province_id": 8, "name": "Kota Sungai Penuh" }
+]
