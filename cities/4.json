@@ -1,0 +1,21 @@
+[
+  { "id": 1, "province_id": 4, "name": "Kabupaten Agam" },
+  { "id": 2, "province_id": 4, "name": "Kabupaten Dharmasraya" },
+  { "id": 3, "province_id": 4, "name": "Kabupaten Kepulauan Mentawai" },
+  { "id": 4, "province_id": 4, "name": "Kabupaten Lima Puluh Kota" },
+  { "id": 5, "province_id": 4, "name": "Kabupaten Padang Pariaman" },
+  { "id": 6, "province_id": 4, "name": "Kabupaten Pasaman" },
+  { "id": 7, "province_id": 4, "name": "Kabupaten Pasaman Barat" },
+  { "id": 8, "province_id": 4, "name": "Kabupaten Pesisir Selatan" },
+  { "id": 9, "province_id": 4, "name": "Kabupaten Sijunjung" },
+  { "id": 10, "province_id": 4, "name": "Kabupaten Solok" },
+  { "id": 11, "province_id": 4, "name": "Kabupaten Solok Selatan" },
+  { "id": 12, "province_id": 4, "name": "Kabupaten Tanah Datar" },
+  { "id": 13, "province_id": 4, "name": "Kota Bukittinggi" },
+  { "id": 14, "province_id": 4, "name": "Kota Padang" },
+  { "id": 15, "province_id": 4, "name": "Kota Padang Panjang" },
+  { "id": 16, "province_id": 4, "name": "Kota Pariaman" },
+  { "id": 17, "province_id": 4, "name": "Kota Payakumbuh" },
+  { "id": 18, "province_id": 4, "name": "Kota Sawahlunto" },
+  { "id": 19, "province_id": 4, "name": "Kota Solok" }
+]
