@@ -1,9 +1,1 @@
-[
-  { "id": 1, "province_id": 10, "name": "Kabupaten Bangka" },
-  { "id": 2, "province_id": 10, "name": "Kabupaten Bangka Barat" },
-  { "id": 3, "province_id": 10, "name": "Kabupaten Bangka Selatan" },
-  { "id": 4, "province_id": 10, "name": "Kabupaten Bangka Tengah" },
-  { "id": 5, "province_id": 10, "name": "kabupaten belitung" },
-  { "id": 6, "province_id": 10, "name": "Kabupaten Belitung Timur" },
-  { "id": 7, "province_id": 10, "name": "Kota Pangkalpinang" }
-]
+[{"id":1,"name":"Kabupaten Bangka"},{"id":2,"name":"Kabupaten Bangka Barat"},{"id":3,"name":"Kabupaten Bangka Selatan"},{"id":4,"name":"Kabupaten Bangka Tengah"},{"id":5,"name":"kabupaten belitung"},{"id":6,"name":"Kabupaten Belitung Timur"},{"id":7,"name":"Kota Pangkalpinang"}]

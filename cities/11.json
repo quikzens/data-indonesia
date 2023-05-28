@@ -1,16 +1,1 @@
-[
-  { "id": 1, "province_id": 11, "name": "Kabupaten Bengkayang" }, 
-  { "id": 2, "province_id": 11, "name": "Kabupaten Kapuas Hulu" }, 
-  { "id": 3, "province_id": 11, "name": "Kabupaten Kayong Utara" }, 
-  { "id": 4, "province_id": 11, "name": "Kabupaten Ketapang" }, 
-  { "id": 5, "province_id": 11, "name": "Kabupaten Kubu Raya" }, 
-  { "id": 6, "province_id": 11, "name": "Kabupaten Landak" }, 
-  { "id": 7, "province_id": 11, "name": "Kabupaten Melawi" }, 
-  { "id": 8, "province_id": 11, "name": "Kabupaten Mempawah" }, 
-  { "id": 9, "province_id": 11, "name": "Kabupaten Sambas" }, 
-  { "id": 10, "province_id": 11, "name": "Kabupaten Sanggau" }, 
-  { "id": 11, "province_id": 11, "name": "Kabupaten Sekadau" }, 
-  { "id": 12, "province_id": 11, "name": "Kabupaten Sintang" }, 
-  { "id": 13, "province_id": 11, "name": "Kota Pontianak" }, 
-  { "id": 14, "province_id": 11, "name": "Kota Singkawang" }
-]
+[{"id":1,"name":"Kabupaten Bengkayang"},{"id":2,"name":"Kabupaten Kapuas Hulu"},{"id":3,"name":"Kabupaten Kayong Utara"},{"id":4,"name":"Kabupaten Ketapang"},{"id":5,"name":"Kabupaten Kubu Raya"},{"id":6,"name":"Kabupaten Landak"},{"id":7,"name":"Kabupaten Melawi"},{"id":8,"name":"Kabupaten Mempawah"},{"id":9,"name":"Kabupaten Sambas"},{"id":10,"name":"Kabupaten Sanggau"},{"id":11,"name":"Kabupaten Sekadau"},{"id":12,"name":"Kabupaten Sintang"},{"id":13,"name":"Kota Pontianak"},{"id":14,"name":"Kota Singkawang"}]

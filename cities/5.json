@@ -1,12 +1,1 @@
-[
-  { "id": 1, "province_id": 5, "name": "Kabupaten Bengkulu Selatan" },
-  { "id": 2, "province_id": 5, "name": "Kabupaten Bengkulu Tengah" },
-  { "id": 3, "province_id": 5, "name": "Kabupaten Bengkulu Utara" },
-  { "id": 4, "province_id": 5, "name": "Kabupaten Kaur" },
-  { "id": 5, "province_id": 5, "name": "Kabupaten Kepahiang" },
-  { "id": 6, "province_id": 5, "name": "Kabupaten Lebong" },
-  { "id": 7, "province_id": 5, "name": "Kabupaten Mukomuko" },
-  { "id": 8, "province_id": 5, "name": "Kabupaten Rejang Lebong" },
-  { "id": 9, "province_id": 5, "name": "Kabupaten Seluma" },
-  { "id": 10, "province_id": 5, "name": "Kota Bengkulu" }
-]
+[{"id":1,"name":"Kabupaten Bengkulu Selatan"},{"id":2,"name":"Kabupaten Bengkulu Tengah"},{"id":3,"name":"Kabupaten Bengkulu Utara"},{"id":4,"name":"Kabupaten Kaur"},{"id":5,"name":"Kabupaten Kepahiang"},{"id":6,"name":"Kabupaten Lebong"},{"id":7,"name":"Kabupaten Mukomuko"},{"id":8,"name":"Kabupaten Rejang Lebong"},{"id":9,"name":"Kabupaten Seluma"},{"id":10,"name":"Kota Bengkulu"}]

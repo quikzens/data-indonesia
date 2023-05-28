@@ -1,15 +1,1 @@
-[
-  { "id": 1, "province_id": 13, "name": "Kabupaten Balangan" }, 
-  { "id": 2, "province_id": 13, "name": "Kabupaten Banjar" }, 
-  { "id": 3, "province_id": 13, "name": "Kabupaten Barito Kuala" }, 
-  { "id": 4, "province_id": 13, "name": "Kabupaten Hulu Sungai Selatan" }, 
-  { "id": 5, "province_id": 13, "name": "Kabupaten Hulu Sungai Tengah" },
-  { "id": 6, "province_id": 13, "name": "Kabupaten Hulu Sungai Utara" }, 
-  { "id": 7, "province_id": 13, "name": "Kabupaten Kotabaru" }, 
-  { "id": 8, "province_id": 13, "name": "Kabupaten Tabalong" }, 
-  { "id": 9, "province_id": 13, "name": "Kabupaten Tanah Bumbu" }, 
-  { "id": 10, "province_id": 13, "name": "Kabupaten Tanah Laut" }, 
-  { "id": 11, "province_id": 13, "name": "Kabupaten Tapin" }, 
-  { "id": 12, "province_id": 13, "name": "Kota Banjarbaru" }, 
-  { "id": 13, "province_id": 13, "name": "Kota Banjarmasin" }
-]
+[{"id":1,"name":"Kabupaten Balangan"},{"id":2,"name":"Kabupaten Banjar"},{"id":3,"name":"Kabupaten Barito Kuala"},{"id":4,"name":"Kabupaten Hulu Sungai Selatan"},{"id":5,"name":"Kabupaten Hulu Sungai Tengah"},{"id":6,"name":"Kabupaten Hulu Sungai Utara"},{"id":7,"name":"Kabupaten Kotabaru"},{"id":8,"name":"Kabupaten Tabalong"},{"id":9,"name":"Kabupaten Tanah Bumbu"},{"id":10,"name":"Kabupaten Tanah Laut"},{"id":11,"name":"Kabupaten Tapin"},{"id":12,"name":"Kota Banjarbaru"},{"id":13,"name":"Kota Banjarmasin"}]
