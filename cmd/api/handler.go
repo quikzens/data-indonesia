@@ -3,6 +3,9 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type Handler struct {
@@ -132,6 +135,29 @@ func (h *Handler) PaginateProvinces(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+func (h *Handler) GetProvince(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	idString := chi.URLParam(r, "ID")
+	id, err := strconv.ParseUint(idString, 10, 32)
+	if err != nil {
+		h.writeError(w, BadRequestError{
+			Field:   "ID",
+			Message: "ID Must be a Number",
+		})
+		return
+	}
+
+	province, err := h.usecase.GetProvince(ctx, uint(id))
+	if err != nil {
+		h.writeError(w, err)
+		return
+	}
+
+	h.writeSuccess(w, province, MetaResponse{
+		HTTPCode: http.StatusOK,
+	})
+}
+
 func (h *Handler) GetCities(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
@@ -207,6 +233,29 @@ func (h *Handler) PaginateCities(w http.ResponseWriter, r *http.Request) {
 		Limit:    paginateResult.Limit,
 		Offset:   paginateResult.Offset,
 		Total:    paginateResult.Total,
+	})
+}
+
+func (h *Handler) GetCity(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	idString := chi.URLParam(r, "ID")
+	id, err := strconv.ParseUint(idString, 10, 32)
+	if err != nil {
+		h.writeError(w, BadRequestError{
+			Field:   "ID",
+			Message: "ID Must be a Number",
+		})
+		return
+	}
+
+	city, err := h.usecase.GetCity(ctx, uint(id))
+	if err != nil {
+		h.writeError(w, err)
+		return
+	}
+
+	h.writeSuccess(w, city, MetaResponse{
+		HTTPCode: http.StatusOK,
 	})
 }
 
@@ -299,6 +348,29 @@ func (h *Handler) PaginateSubdistricts(w http.ResponseWriter, r *http.Request) {
 		Limit:    paginateResult.Limit,
 		Offset:   paginateResult.Offset,
 		Total:    paginateResult.Total,
+	})
+}
+
+func (h *Handler) GetSubdistrict(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	idString := chi.URLParam(r, "ID")
+	id, err := strconv.ParseUint(idString, 10, 32)
+	if err != nil {
+		h.writeError(w, BadRequestError{
+			Field:   "ID",
+			Message: "ID Must be a Number",
+		})
+		return
+	}
+
+	subdistrict, err := h.usecase.GetSubdistrict(ctx, uint(id))
+	if err != nil {
+		h.writeError(w, err)
+		return
+	}
+
+	h.writeSuccess(w, subdistrict, MetaResponse{
+		HTTPCode: http.StatusOK,
 	})
 }
 
@@ -405,5 +477,28 @@ func (h *Handler) PaginateVillages(w http.ResponseWriter, r *http.Request) {
 		Limit:    paginateResult.Limit,
 		Offset:   paginateResult.Offset,
 		Total:    paginateResult.Total,
+	})
+}
+
+func (h *Handler) GetVillage(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	idString := chi.URLParam(r, "ID")
+	id, err := strconv.ParseUint(idString, 10, 32)
+	if err != nil {
+		h.writeError(w, BadRequestError{
+			Field:   "ID",
+			Message: "ID Must be a Number",
+		})
+		return
+	}
+
+	village, err := h.usecase.GetVillage(ctx, uint(id))
+	if err != nil {
+		h.writeError(w, err)
+		return
+	}
+
+	h.writeSuccess(w, village, MetaResponse{
+		HTTPCode: http.StatusOK,
 	})
 }

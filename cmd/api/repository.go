@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"gorm.io/gorm"
@@ -46,6 +47,20 @@ func (r *Repository) SearchProvinces(ctx context.Context, param PaginateProvince
 	return res, int(count), nil
 }
 
+func (r *Repository) FindProvinceByID(ctx context.Context, id uint) (Province, error) {
+	var province Province
+	err := r.db.WithContext(ctx).First(&province, id).Error
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return province, ProvinceNotFoundError{}
+		} else {
+			return province, err
+		}
+	}
+
+	return province, nil
+}
+
 func (r *Repository) SearchCities(ctx context.Context, param PaginateCitiesParam) ([]City, int, error) {
 	var count int64
 	var res []City
@@ -79,6 +94,20 @@ func (r *Repository) SearchCities(ctx context.Context, param PaginateCitiesParam
 	}
 
 	return res, int(count), nil
+}
+
+func (r *Repository) FindCityByID(ctx context.Context, id uint) (City, error) {
+	var city City
+	err := r.db.WithContext(ctx).First(&city, id).Error
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return city, CityNotFoundError{}
+		} else {
+			return city, err
+		}
+	}
+
+	return city, nil
 }
 
 func (r *Repository) SearchSubdistricts(ctx context.Context, param PaginateSubdistrictsParam) ([]Subdistrict, int, error) {
@@ -118,6 +147,20 @@ func (r *Repository) SearchSubdistricts(ctx context.Context, param PaginateSubdi
 	}
 
 	return res, int(count), nil
+}
+
+func (r *Repository) FindSubdistrictByID(ctx context.Context, id uint) (Subdistrict, error) {
+	var subdistrict Subdistrict
+	err := r.db.WithContext(ctx).First(&subdistrict, id).Error
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return subdistrict, SubdistrictNotFoundError{}
+		} else {
+			return subdistrict, err
+		}
+	}
+
+	return subdistrict, nil
 }
 
 func (r *Repository) SearchVillages(ctx context.Context, param PaginateVillagesParam) ([]Village, int, error) {
@@ -161,4 +204,18 @@ func (r *Repository) SearchVillages(ctx context.Context, param PaginateVillagesP
 	}
 
 	return res, int(count), nil
+}
+
+func (r *Repository) FindVillageByID(ctx context.Context, id uint) (Village, error) {
+	var village Village
+	err := r.db.WithContext(ctx).First(&village, id).Error
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return village, VillageNotFoundError{}
+		} else {
+			return village, err
+		}
+	}
+
+	return village, nil
 }

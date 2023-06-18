@@ -140,3 +140,63 @@ type PaginateVillagesParam struct {
 	CityId        int
 	SubdistrictId int
 }
+
+type ProvinceNotFoundError struct{}
+
+func (e ProvinceNotFoundError) Error() string {
+	return "Province Not Found"
+}
+
+func (e ProvinceNotFoundError) ToHttpError() (int, []HttpResponseError) {
+	return http.StatusNotFound, []HttpResponseError{
+		{
+			Field:   "Province",
+			Message: e.Error(),
+		},
+	}
+}
+
+type CityNotFoundError struct{}
+
+func (e CityNotFoundError) Error() string {
+	return "City Not Found"
+}
+
+func (e CityNotFoundError) ToHttpError() (int, []HttpResponseError) {
+	return http.StatusNotFound, []HttpResponseError{
+		{
+			Field:   "City",
+			Message: e.Error(),
+		},
+	}
+}
+
+type SubdistrictNotFoundError struct{}
+
+func (e SubdistrictNotFoundError) Error() string {
+	return "Subdistrict Not Found"
+}
+
+func (e SubdistrictNotFoundError) ToHttpError() (int, []HttpResponseError) {
+	return http.StatusNotFound, []HttpResponseError{
+		{
+			Field:   "Subdistrict",
+			Message: e.Error(),
+		},
+	}
+}
+
+type VillageNotFoundError struct{}
+
+func (e VillageNotFoundError) Error() string {
+	return "Village Not Found"
+}
+
+func (e VillageNotFoundError) ToHttpError() (int, []HttpResponseError) {
+	return http.StatusNotFound, []HttpResponseError{
+		{
+			Field:   "Village",
+			Message: e.Error(),
+		},
+	}
+}

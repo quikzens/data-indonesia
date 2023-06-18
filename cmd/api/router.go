@@ -24,21 +24,25 @@ func NewRouter(h *Handler) chi.Router {
 
 	r.Route("/provinces", func(r chi.Router) {
 		r.Get("/", h.GetProvinces)
+		r.Get("/{ID}", h.GetProvince)
 		r.Get("/paginate", h.PaginateProvinces)
 	})
 
 	r.Route("/cities", func(r chi.Router) {
 		r.Get("/", h.GetCities)
+		r.Get("/{ID}", h.GetCity)
 		r.Get("/paginate", h.PaginateCities)
 	})
 
 	r.Route("/subdistricts", func(r chi.Router) {
 		r.Get("/", h.GetSubdistricts)
+		r.Get("/{ID}", h.GetSubdistrict)
 		r.Get("/paginate", h.PaginateSubdistricts)
 	})
 
 	r.Route("/villages", func(r chi.Router) {
 		r.Get("/", h.GetVillages)
+		r.Get("/{ID}", h.GetVillage)
 		r.Get("/paginate", h.PaginateVillages)
 	})
 
