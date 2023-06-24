@@ -32,7 +32,7 @@
 </script>
 
 <main>
-	<h1 class="title">List Desa di Kecamatan <span>{subdistrictName}</span></h1>
+	<h1 class="title">List Kelurahan/Desa di Kecamatan <span>{subdistrictName}</span></h1>
 	<p>Total: {villages.length}</p>
 	<ul>
 		{#each villages as village (village.id)}
