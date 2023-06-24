@@ -68,6 +68,10 @@ func (h *Handler) writeError(w http.ResponseWriter, err error) {
 	_, _ = w.Write(responseBody)
 }
 
+func (h *Handler) Healthz(w http.ResponseWriter, r *http.Request) {
+	_, _ = w.Write([]byte("ok"))
+}
+
 func (h *Handler) GetProvinces(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
