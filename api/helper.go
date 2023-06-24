@@ -1,8 +1,10 @@
 package main
 
 import (
-	"net/url"
+	"net/http"
 	"strconv"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type OrderQueryParam struct {
@@ -28,7 +30,8 @@ func BuildOrderQuery(param OrderQueryParam) string {
 	return orderQuery
 }
 
-func GetIntParam(queryParams url.Values, fieldName string, errMessage string) (int, error) {
+func GetQueryIntParam(r *http.Request, fieldName string, errMessage string) (int, error) {
+	queryParams := r.URL.Query()
 	var value int
 	if queryParams.Get(fieldName) != "" {
 		var convertErr error
@@ -38,4 +41,13 @@ func GetIntParam(queryParams url.Values, fieldName string, errMessage string) (i
 		}
 	}
 	return value, nil
+}
+
+func GetUrlIntParam(r *http.Request, fieldName string, errMessage string) (int, error) {
+	valueString := chi.URLParam(r, fieldName)
+	value, err := strconv.ParseInt(valueString, 10, 32)
+	if err != nil {
+		return 0, BadRequestError{Field: fieldName, Message: errMessage}
+	}
+	return int(value), nil
 }

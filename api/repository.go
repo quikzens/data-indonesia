@@ -47,7 +47,7 @@ func (r *Repository) SearchProvinces(ctx context.Context, param PaginateProvince
 	return res, int(count), nil
 }
 
-func (r *Repository) FindProvinceByID(ctx context.Context, id uint) (Province, error) {
+func (r *Repository) FindProvinceByID(ctx context.Context, id int) (Province, error) {
 	var province Province
 	err := r.db.WithContext(ctx).First(&province, id).Error
 	if err != nil {
@@ -96,7 +96,7 @@ func (r *Repository) SearchCities(ctx context.Context, param PaginateCitiesParam
 	return res, int(count), nil
 }
 
-func (r *Repository) FindCityByID(ctx context.Context, id uint) (City, error) {
+func (r *Repository) FindCityByID(ctx context.Context, id int) (City, error) {
 	var city City
 	err := r.db.WithContext(ctx).First(&city, id).Error
 	if err != nil {
@@ -149,7 +149,7 @@ func (r *Repository) SearchSubdistricts(ctx context.Context, param PaginateSubdi
 	return res, int(count), nil
 }
 
-func (r *Repository) FindSubdistrictByID(ctx context.Context, id uint) (Subdistrict, error) {
+func (r *Repository) FindSubdistrictByID(ctx context.Context, id int) (Subdistrict, error) {
 	var subdistrict Subdistrict
 	err := r.db.WithContext(ctx).First(&subdistrict, id).Error
 	if err != nil {
@@ -206,7 +206,7 @@ func (r *Repository) SearchVillages(ctx context.Context, param PaginateVillagesP
 	return res, int(count), nil
 }
 
-func (r *Repository) FindVillageByID(ctx context.Context, id uint) (Village, error) {
+func (r *Repository) FindVillageByID(ctx context.Context, id int) (Village, error) {
 	var village Village
 	err := r.db.WithContext(ctx).First(&village, id).Error
 	if err != nil {

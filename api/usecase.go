@@ -46,7 +46,7 @@ func (u *Usecase) PaginateProvinces(ctx context.Context, param PaginateProvinces
 	}, nil
 }
 
-func (u *Usecase) GetProvince(ctx context.Context, id uint) (Province, error) {
+func (u *Usecase) GetProvince(ctx context.Context, id int) (Province, error) {
 	return u.repo.FindProvinceByID(ctx, id)
 }
 
@@ -82,7 +82,7 @@ func (u *Usecase) PaginateCities(ctx context.Context, param PaginateCitiesParam)
 	}, nil
 }
 
-func (u *Usecase) GetCity(ctx context.Context, id uint) (City, error) {
+func (u *Usecase) GetCity(ctx context.Context, id int) (City, error) {
 	return u.repo.FindCityByID(ctx, id)
 }
 
@@ -118,7 +118,7 @@ func (u *Usecase) PaginateSubdistricts(ctx context.Context, param PaginateSubdis
 	}, nil
 }
 
-func (u *Usecase) GetSubdistrict(ctx context.Context, id uint) (Subdistrict, error) {
+func (u *Usecase) GetSubdistrict(ctx context.Context, id int) (Subdistrict, error) {
 	return u.repo.FindSubdistrictByID(ctx, id)
 }
 
@@ -154,6 +154,6 @@ func (u *Usecase) PaginateVillages(ctx context.Context, param PaginateVillagesPa
 	}, nil
 }
 
-func (u *Usecase) GetVillage(ctx context.Context, id uint) (Village, error) {
+func (u *Usecase) GetVillage(ctx context.Context, id int) (Village, error) {
 	return u.repo.FindVillageByID(ctx, id)
 }

@@ -3,9 +3,6 @@ package main
 import (
 	"encoding/json"
 	"net/http"
-	"strconv"
-
-	"github.com/go-chi/chi/v5"
 )
 
 type Handler struct {
@@ -99,13 +96,13 @@ func (h *Handler) PaginateProvinces(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	limit, err := GetIntParam(queryParams, "limit", "limit must be a number")
+	limit, err := GetQueryIntParam(r, "limit", "limit must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	offset, err := GetIntParam(queryParams, "offset", "offset must be a number")
+	offset, err := GetQueryIntParam(r, "offset", "offset must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -137,17 +134,13 @@ func (h *Handler) PaginateProvinces(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetProvince(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	idString := chi.URLParam(r, "ID")
-	id, err := strconv.ParseUint(idString, 10, 32)
+	id, err := GetUrlIntParam(r, "ID", "ID Must be a Number")
 	if err != nil {
-		h.writeError(w, BadRequestError{
-			Field:   "ID",
-			Message: "ID Must be a Number",
-		})
+		h.writeError(w, err)
 		return
 	}
 
-	province, err := h.usecase.GetProvince(ctx, uint(id))
+	province, err := h.usecase.GetProvince(ctx, id)
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -162,7 +155,7 @@ func (h *Handler) GetCities(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	provinceId, err := GetIntParam(queryParams, "province_id", "province_id must be a number")
+	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -193,19 +186,19 @@ func (h *Handler) PaginateCities(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	limit, err := GetIntParam(queryParams, "limit", "limit must be a number")
+	limit, err := GetQueryIntParam(r, "limit", "limit must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	offset, err := GetIntParam(queryParams, "offset", "offset must be a number")
+	offset, err := GetQueryIntParam(r, "offset", "offset must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	provinceId, err := GetIntParam(queryParams, "province_id", "province_id must be a number")
+	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -238,17 +231,13 @@ func (h *Handler) PaginateCities(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetCity(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	idString := chi.URLParam(r, "ID")
-	id, err := strconv.ParseUint(idString, 10, 32)
+	id, err := GetUrlIntParam(r, "ID", "ID Must be a Number")
 	if err != nil {
-		h.writeError(w, BadRequestError{
-			Field:   "ID",
-			Message: "ID Must be a Number",
-		})
+		h.writeError(w, err)
 		return
 	}
 
-	city, err := h.usecase.GetCity(ctx, uint(id))
+	city, err := h.usecase.GetCity(ctx, id)
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -263,13 +252,13 @@ func (h *Handler) GetSubdistricts(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	provinceId, err := GetIntParam(queryParams, "province_id", "province_id must be a number")
+	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	cityId, err := GetIntParam(queryParams, "city_id", "city_id must be a number")
+	cityId, err := GetQueryIntParam(r, "city_id", "city_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -301,25 +290,25 @@ func (h *Handler) PaginateSubdistricts(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	limit, err := GetIntParam(queryParams, "limit", "limit must be a number")
+	limit, err := GetQueryIntParam(r, "limit", "limit must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	offset, err := GetIntParam(queryParams, "offset", "offset must be a number")
+	offset, err := GetQueryIntParam(r, "offset", "offset must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	provinceId, err := GetIntParam(queryParams, "province_id", "province_id must be a number")
+	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	cityId, err := GetIntParam(queryParams, "city_id", "city_id must be a number")
+	cityId, err := GetQueryIntParam(r, "city_id", "city_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -353,17 +342,13 @@ func (h *Handler) PaginateSubdistricts(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetSubdistrict(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	idString := chi.URLParam(r, "ID")
-	id, err := strconv.ParseUint(idString, 10, 32)
+	id, err := GetUrlIntParam(r, "ID", "ID Must be a Number")
 	if err != nil {
-		h.writeError(w, BadRequestError{
-			Field:   "ID",
-			Message: "ID Must be a Number",
-		})
+		h.writeError(w, err)
 		return
 	}
 
-	subdistrict, err := h.usecase.GetSubdistrict(ctx, uint(id))
+	subdistrict, err := h.usecase.GetSubdistrict(ctx, id)
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -378,19 +363,19 @@ func (h *Handler) GetVillages(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	provinceId, err := GetIntParam(queryParams, "province_id", "province_id must be a number")
+	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	cityId, err := GetIntParam(queryParams, "city_id", "city_id must be a number")
+	cityId, err := GetQueryIntParam(r, "city_id", "city_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	subdistrictId, err := GetIntParam(queryParams, "subdistrict_id", "subdistrict_id must be a number")
+	subdistrictId, err := GetQueryIntParam(r, "subdistrict_id", "subdistrict_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -423,31 +408,31 @@ func (h *Handler) PaginateVillages(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	limit, err := GetIntParam(queryParams, "limit", "limit must be a number")
+	limit, err := GetQueryIntParam(r, "limit", "limit must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	offset, err := GetIntParam(queryParams, "offset", "offset must be a number")
+	offset, err := GetQueryIntParam(r, "offset", "offset must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	provinceId, err := GetIntParam(queryParams, "province_id", "province_id must be a number")
+	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	cityId, err := GetIntParam(queryParams, "city_id", "city_id must be a number")
+	cityId, err := GetQueryIntParam(r, "city_id", "city_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	subdistrictId, err := GetIntParam(queryParams, "subdistrict_id", "subdistrict_id must be a number")
+	subdistrictId, err := GetQueryIntParam(r, "subdistrict_id", "subdistrict_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -482,17 +467,13 @@ func (h *Handler) PaginateVillages(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetVillage(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	idString := chi.URLParam(r, "ID")
-	id, err := strconv.ParseUint(idString, 10, 32)
+	id, err := GetUrlIntParam(r, "ID", "ID Must be a Number")
 	if err != nil {
-		h.writeError(w, BadRequestError{
-			Field:   "ID",
-			Message: "ID Must be a Number",
-		})
+		h.writeError(w, err)
 		return
 	}
 
-	village, err := h.usecase.GetVillage(ctx, uint(id))
+	village, err := h.usecase.GetVillage(ctx, id)
 	if err != nil {
 		h.writeError(w, err)
 		return
