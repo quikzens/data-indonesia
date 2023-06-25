@@ -138,7 +138,7 @@ func (h *Handler) PaginateProvinces(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetProvince(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id, err := GetUrlIntParam(r, "ID", "ID Must be a Number")
+	id, err := GetUrlIntParam(r, "ID", "ID Must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -235,7 +235,7 @@ func (h *Handler) PaginateCities(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetCity(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id, err := GetUrlIntParam(r, "ID", "ID Must be a Number")
+	id, err := GetUrlIntParam(r, "ID", "ID Must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -346,7 +346,7 @@ func (h *Handler) PaginateSubdistricts(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetSubdistrict(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id, err := GetUrlIntParam(r, "ID", "ID Must be a Number")
+	id, err := GetUrlIntParam(r, "ID", "ID Must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -471,7 +471,7 @@ func (h *Handler) PaginateVillages(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetVillage(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id, err := GetUrlIntParam(r, "ID", "ID Must be a Number")
+	id, err := GetUrlIntParam(r, "ID", "ID Must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
