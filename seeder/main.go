@@ -17,7 +17,7 @@ func main() {
 
 func seedProvinces(db *gorm.DB, filename string) {
 	provinces := make([]Province, 0)
-	filePath := fmt.Sprintf("../../data/%s", filename)
+	filePath := fmt.Sprintf("../data/%s", filename)
 	readFileToJson(filePath, &provinces)
 
 	for _, province := range provinces {
@@ -28,7 +28,7 @@ func seedProvinces(db *gorm.DB, filename string) {
 
 func seedCities(db *gorm.DB, provinceId int, dbProvinceId int) {
 	cities := make([]City, 0)
-	filePath := fmt.Sprintf("../../data/cities/%d.json", provinceId)
+	filePath := fmt.Sprintf("../data/cities/%d.json", provinceId)
 	readFileToJson(filePath, &cities)
 
 	for _, city := range cities {
@@ -39,7 +39,7 @@ func seedCities(db *gorm.DB, provinceId int, dbProvinceId int) {
 
 func seedSubdistricts(db *gorm.DB, provinceId int, cityId int, dbProvinceId int, dbCityId int) {
 	subdistricts := make([]Subdistrict, 0)
-	filePath := fmt.Sprintf("../../data/subdistricts/%d_%d.json", provinceId, cityId)
+	filePath := fmt.Sprintf("../data/subdistricts/%d_%d.json", provinceId, cityId)
 	readFileToJson(filePath, &subdistricts)
 
 	for _, subdistrict := range subdistricts {
@@ -50,7 +50,7 @@ func seedSubdistricts(db *gorm.DB, provinceId int, cityId int, dbProvinceId int,
 
 func seedVillages(db *gorm.DB, provinceId int, cityId int, subdistrictId int, dbProvinceId int, dbCityId int, dbSubdistrictId int) {
 	villages := make([]Village, 0)
-	filePath := fmt.Sprintf("../../data/villages/%d_%d_%d.json", provinceId, cityId, subdistrictId)
+	filePath := fmt.Sprintf("../data/villages/%d_%d_%d.json", provinceId, cityId, subdistrictId)
 	readFileToJson(filePath, &villages)
 
 	for _, village := range villages {
