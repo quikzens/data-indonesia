@@ -3,6 +3,7 @@ package main
 import (
 	"api/helper"
 	"api/repository"
+	"api/usecase"
 	"bytes"
 	"io"
 	"net/http"
@@ -37,7 +38,7 @@ func newTestServer(t *testing.T) *testServer {
 
 	db := InitGormDatabase()
 	r := repository.NewRepository(db)
-	u := NewUsecase(r)
+	u := usecase.NewUsecase(r)
 	h := NewHandler(u)
 	router := NewRouter(h)
 

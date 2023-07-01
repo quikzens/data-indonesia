@@ -3,15 +3,16 @@ package main
 import (
 	"api/entity"
 	"api/helper"
+	"api/usecase"
 	"encoding/json"
 	"net/http"
 )
 
 type Handler struct {
-	usecase *Usecase
+	usecase *usecase.Usecase
 }
 
-func NewHandler(usecase *Usecase) *Handler {
+func NewHandler(usecase *usecase.Usecase) *Handler {
 	return &Handler{
 		usecase: usecase,
 	}
