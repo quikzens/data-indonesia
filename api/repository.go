@@ -2,6 +2,7 @@ package main
 
 import (
 	"api/entity"
+	"api/helper"
 	"context"
 	"errors"
 	"fmt"
@@ -31,7 +32,7 @@ func (r *Repository) SearchProvinces(ctx context.Context, param entity.PaginateP
 		return res, int(count), err
 	}
 
-	orderQuery := BuildOrderQuery(OrderQueryParam{
+	orderQuery := helper.BuildOrderQuery(entity.OrderQueryParam{
 		SortBy:  param.SortBy,
 		OrderBy: param.OrderBy,
 	})
@@ -80,7 +81,7 @@ func (r *Repository) SearchCities(ctx context.Context, param entity.PaginateCiti
 		return res, int(count), err
 	}
 
-	orderQuery := BuildOrderQuery(OrderQueryParam{
+	orderQuery := helper.BuildOrderQuery(entity.OrderQueryParam{
 		SortBy:  param.SortBy,
 		OrderBy: param.OrderBy,
 	})
@@ -133,7 +134,7 @@ func (r *Repository) SearchSubdistricts(ctx context.Context, param entity.Pagina
 		return res, int(count), err
 	}
 
-	orderQuery := BuildOrderQuery(OrderQueryParam{
+	orderQuery := helper.BuildOrderQuery(entity.OrderQueryParam{
 		SortBy:  param.SortBy,
 		OrderBy: param.OrderBy,
 	})
@@ -190,7 +191,7 @@ func (r *Repository) SearchVillages(ctx context.Context, param entity.PaginateVi
 		return res, int(count), err
 	}
 
-	orderQuery := BuildOrderQuery(OrderQueryParam{
+	orderQuery := helper.BuildOrderQuery(entity.OrderQueryParam{
 		SortBy:  param.SortBy,
 		OrderBy: param.OrderBy,
 	})

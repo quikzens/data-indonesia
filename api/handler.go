@@ -2,6 +2,7 @@ package main
 
 import (
 	"api/entity"
+	"api/helper"
 	"encoding/json"
 	"net/http"
 )
@@ -101,13 +102,13 @@ func (h *Handler) PaginateProvinces(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	limit, err := GetQueryIntParam(r, "limit", "limit must be a number")
+	limit, err := helper.GetQueryIntParam(r, "limit", "limit must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	offset, err := GetQueryIntParam(r, "offset", "offset must be a number")
+	offset, err := helper.GetQueryIntParam(r, "offset", "offset must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -139,7 +140,7 @@ func (h *Handler) PaginateProvinces(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetProvince(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id, err := GetUrlIntParam(r, "ID", "ID Must be a number")
+	id, err := helper.GetUrlIntParam(r, "ID", "ID Must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -160,7 +161,7 @@ func (h *Handler) GetCities(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
+	provinceId, err := helper.GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -191,19 +192,19 @@ func (h *Handler) PaginateCities(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	limit, err := GetQueryIntParam(r, "limit", "limit must be a number")
+	limit, err := helper.GetQueryIntParam(r, "limit", "limit must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	offset, err := GetQueryIntParam(r, "offset", "offset must be a number")
+	offset, err := helper.GetQueryIntParam(r, "offset", "offset must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
+	provinceId, err := helper.GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -236,7 +237,7 @@ func (h *Handler) PaginateCities(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetCity(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id, err := GetUrlIntParam(r, "ID", "ID Must be a number")
+	id, err := helper.GetUrlIntParam(r, "ID", "ID Must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -257,13 +258,13 @@ func (h *Handler) GetSubdistricts(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
+	provinceId, err := helper.GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	cityId, err := GetQueryIntParam(r, "city_id", "city_id must be a number")
+	cityId, err := helper.GetQueryIntParam(r, "city_id", "city_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -295,25 +296,25 @@ func (h *Handler) PaginateSubdistricts(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	limit, err := GetQueryIntParam(r, "limit", "limit must be a number")
+	limit, err := helper.GetQueryIntParam(r, "limit", "limit must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	offset, err := GetQueryIntParam(r, "offset", "offset must be a number")
+	offset, err := helper.GetQueryIntParam(r, "offset", "offset must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
+	provinceId, err := helper.GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	cityId, err := GetQueryIntParam(r, "city_id", "city_id must be a number")
+	cityId, err := helper.GetQueryIntParam(r, "city_id", "city_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -347,7 +348,7 @@ func (h *Handler) PaginateSubdistricts(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetSubdistrict(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id, err := GetUrlIntParam(r, "ID", "ID Must be a number")
+	id, err := helper.GetUrlIntParam(r, "ID", "ID Must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -368,19 +369,19 @@ func (h *Handler) GetVillages(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
+	provinceId, err := helper.GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	cityId, err := GetQueryIntParam(r, "city_id", "city_id must be a number")
+	cityId, err := helper.GetQueryIntParam(r, "city_id", "city_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	subdistrictId, err := GetQueryIntParam(r, "subdistrict_id", "subdistrict_id must be a number")
+	subdistrictId, err := helper.GetQueryIntParam(r, "subdistrict_id", "subdistrict_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -413,31 +414,31 @@ func (h *Handler) PaginateVillages(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	limit, err := GetQueryIntParam(r, "limit", "limit must be a number")
+	limit, err := helper.GetQueryIntParam(r, "limit", "limit must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	offset, err := GetQueryIntParam(r, "offset", "offset must be a number")
+	offset, err := helper.GetQueryIntParam(r, "offset", "offset must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	provinceId, err := GetQueryIntParam(r, "province_id", "province_id must be a number")
+	provinceId, err := helper.GetQueryIntParam(r, "province_id", "province_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	cityId, err := GetQueryIntParam(r, "city_id", "city_id must be a number")
+	cityId, err := helper.GetQueryIntParam(r, "city_id", "city_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
 	}
 
-	subdistrictId, err := GetQueryIntParam(r, "subdistrict_id", "subdistrict_id must be a number")
+	subdistrictId, err := helper.GetQueryIntParam(r, "subdistrict_id", "subdistrict_id must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return
@@ -472,7 +473,7 @@ func (h *Handler) PaginateVillages(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetVillage(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id, err := GetUrlIntParam(r, "ID", "ID Must be a number")
+	id, err := helper.GetUrlIntParam(r, "ID", "ID Must be a number")
 	if err != nil {
 		h.writeError(w, err)
 		return

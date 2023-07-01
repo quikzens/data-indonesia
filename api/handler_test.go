@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/helper"
 	"bytes"
 	"io"
 	"net/http"
@@ -49,6 +50,6 @@ func TestHealthz(t *testing.T) {
 
 	statusCode, _, respBody := ts.get(t, "/healthz")
 
-	Equal(t, statusCode, http.StatusOK)
-	Equal(t, respBody, "ok")
+	helper.Equal(t, statusCode, http.StatusOK)
+	helper.Equal(t, respBody, "ok")
 }
