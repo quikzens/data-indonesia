@@ -2,6 +2,7 @@ package main
 
 import (
 	"api/helper"
+	"api/repository"
 	"bytes"
 	"io"
 	"net/http"
@@ -35,7 +36,7 @@ func newTestServer(t *testing.T) *testServer {
 	_ = godotenv.Load()
 
 	db := InitGormDatabase()
-	r := NewRepository(db)
+	r := repository.NewRepository(db)
 	u := NewUsecase(r)
 	h := NewHandler(u)
 	router := NewRouter(h)

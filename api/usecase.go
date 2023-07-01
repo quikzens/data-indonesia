@@ -2,14 +2,15 @@ package main
 
 import (
 	"api/entity"
+	"api/repository"
 	"context"
 )
 
 type Usecase struct {
-	repo *Repository
+	repo *repository.Repository
 }
 
-func NewUsecase(repo *Repository) *Usecase {
+func NewUsecase(repo *repository.Repository) *Usecase {
 	return &Usecase{
 		repo: repo,
 	}
