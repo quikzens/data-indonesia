@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/entity"
 	"encoding/json"
 	"net/http"
 )
@@ -23,10 +24,10 @@ type MetaResponse struct {
 }
 
 type Response struct {
-	Message string              `json:"message,omitempty"`
-	Data    interface{}         `json:"data,omitempty"`
-	Errors  []HttpResponseError `json:"errors,omitempty"`
-	Meta    MetaResponse        `json:"meta"`
+	Message string                     `json:"message,omitempty"`
+	Data    interface{}                `json:"data,omitempty"`
+	Errors  []entity.HttpResponseError `json:"errors,omitempty"`
+	Meta    MetaResponse               `json:"meta"`
 }
 
 func (h *Handler) writeSuccess(w http.ResponseWriter, data interface{}, meta MetaResponse) {
@@ -41,12 +42,12 @@ func (h *Handler) writeSuccess(w http.ResponseWriter, data interface{}, meta Met
 	_, _ = w.Write(responseBody)
 }
 
-func (h *Handler) translateError(err error) (int, []HttpResponseError) {
+func (h *Handler) translateError(err error) (int, []entity.HttpResponseError) {
 	switch origErr := err.(type) {
-	case HttpError:
+	case entity.HttpError:
 		return origErr.ToHttpError()
 	default:
-		return InternalServerError{Message: err.Error()}.ToHttpError()
+		return entity.InternalServerError{Message: err.Error()}.ToHttpError()
 	}
 }
 
@@ -76,8 +77,8 @@ func (h *Handler) GetProvinces(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	queryParams := r.URL.Query()
 
-	param := PaginateProvincesParam{
-		BasePaginateParam: BasePaginateParam{
+	param := entity.PaginateProvincesParam{
+		BasePaginateParam: entity.BasePaginateParam{
 			Keywords: queryParams.Get("keywords"),
 			SortBy:   queryParams.Get("sort_by"),
 			OrderBy:  queryParams.Get("order_by"),
@@ -112,8 +113,8 @@ func (h *Handler) PaginateProvinces(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	param := PaginateProvincesParam{
-		BasePaginateParam: BasePaginateParam{
+	param := entity.PaginateProvincesParam{
+		BasePaginateParam: entity.BasePaginateParam{
 			Keywords: queryParams.Get("keywords"),
 			SortBy:   queryParams.Get("sort_by"),
 			OrderBy:  queryParams.Get("order_by"),
@@ -165,8 +166,8 @@ func (h *Handler) GetCities(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	param := PaginateCitiesParam{
-		BasePaginateParam: BasePaginateParam{
+	param := entity.PaginateCitiesParam{
+		BasePaginateParam: entity.BasePaginateParam{
 			Keywords: queryParams.Get("keywords"),
 			SortBy:   queryParams.Get("sort_by"),
 			OrderBy:  queryParams.Get("order_by"),
@@ -208,8 +209,8 @@ func (h *Handler) PaginateCities(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	param := PaginateCitiesParam{
-		BasePaginateParam: BasePaginateParam{
+	param := entity.PaginateCitiesParam{
+		BasePaginateParam: entity.BasePaginateParam{
 			Keywords: queryParams.Get("keywords"),
 			SortBy:   queryParams.Get("sort_by"),
 			OrderBy:  queryParams.Get("order_by"),
@@ -268,8 +269,8 @@ func (h *Handler) GetSubdistricts(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	param := PaginateSubdistrictsParam{
-		BasePaginateParam: BasePaginateParam{
+	param := entity.PaginateSubdistrictsParam{
+		BasePaginateParam: entity.BasePaginateParam{
 			Keywords: queryParams.Get("keywords"),
 			SortBy:   queryParams.Get("sort_by"),
 			OrderBy:  queryParams.Get("order_by"),
@@ -318,8 +319,8 @@ func (h *Handler) PaginateSubdistricts(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	param := PaginateSubdistrictsParam{
-		BasePaginateParam: BasePaginateParam{
+	param := entity.PaginateSubdistrictsParam{
+		BasePaginateParam: entity.BasePaginateParam{
 			Keywords: queryParams.Get("keywords"),
 			SortBy:   queryParams.Get("sort_by"),
 			OrderBy:  queryParams.Get("order_by"),
@@ -385,8 +386,8 @@ func (h *Handler) GetVillages(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	param := PaginateVillagesParam{
-		BasePaginateParam: BasePaginateParam{
+	param := entity.PaginateVillagesParam{
+		BasePaginateParam: entity.BasePaginateParam{
 			Keywords: queryParams.Get("keywords"),
 			SortBy:   queryParams.Get("sort_by"),
 			OrderBy:  queryParams.Get("order_by"),
@@ -442,8 +443,8 @@ func (h *Handler) PaginateVillages(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	param := PaginateVillagesParam{
-		BasePaginateParam: BasePaginateParam{
+	param := entity.PaginateVillagesParam{
+		BasePaginateParam: entity.BasePaginateParam{
 			Keywords: queryParams.Get("keywords"),
 			SortBy:   queryParams.Get("sort_by"),
 			OrderBy:  queryParams.Get("order_by"),

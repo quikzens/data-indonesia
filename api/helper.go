@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/entity"
 	"net/http"
 	"strconv"
 	"strings"
@@ -39,7 +40,7 @@ func GetQueryIntParam(r *http.Request, fieldName string, errMessage string) (int
 		var convertErr error
 		value, convertErr = strconv.Atoi(queryParams.Get(fieldName))
 		if convertErr != nil {
-			return value, BadRequestError{Field: fieldName, Message: errMessage}
+			return value, entity.BadRequestError{Field: fieldName, Message: errMessage}
 		}
 	}
 	return value, nil
@@ -49,7 +50,7 @@ func GetUrlIntParam(r *http.Request, fieldName string, errMessage string) (int, 
 	valueString := chi.URLParam(r, fieldName)
 	value, err := strconv.ParseInt(valueString, 10, 32)
 	if err != nil {
-		return 0, BadRequestError{Field: fieldName, Message: errMessage}
+		return 0, entity.BadRequestError{Field: fieldName, Message: errMessage}
 	}
 	return int(value), nil
 }

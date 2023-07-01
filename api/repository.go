@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/entity"
 	"context"
 	"errors"
 	"fmt"
@@ -16,16 +17,16 @@ func NewRepository(db *gorm.DB) *Repository {
 	return &Repository{db: db}
 }
 
-func (r *Repository) SearchProvinces(ctx context.Context, param PaginateProvincesParam) ([]Province, int, error) {
+func (r *Repository) SearchProvinces(ctx context.Context, param entity.PaginateProvincesParam) ([]entity.Province, int, error) {
 	var count int64
-	var res []Province
+	var res []entity.Province
 
 	query := r.db.WithContext(ctx)
 	if param.Keywords != "" {
 		query = query.Where("name ILIKE ?", fmt.Sprintf("%%%s%%", param.Keywords))
 	}
 
-	err := query.Model(Province{}).Count(&count).Error
+	err := query.Model(entity.Province{}).Count(&count).Error
 	if err != nil {
 		return res, int(count), err
 	}
@@ -47,12 +48,12 @@ func (r *Repository) SearchProvinces(ctx context.Context, param PaginateProvince
 	return res, int(count), nil
 }
 
-func (r *Repository) FindProvinceByID(ctx context.Context, id int) (Province, error) {
-	var province Province
+func (r *Repository) FindProvinceByID(ctx context.Context, id int) (entity.Province, error) {
+	var province entity.Province
 	err := r.db.WithContext(ctx).First(&province, id).Error
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return province, ProvinceNotFoundError{}
+			return province, entity.ProvinceNotFoundError{}
 		} else {
 			return province, err
 		}
@@ -61,9 +62,9 @@ func (r *Repository) FindProvinceByID(ctx context.Context, id int) (Province, er
 	return province, nil
 }
 
-func (r *Repository) SearchCities(ctx context.Context, param PaginateCitiesParam) ([]City, int, error) {
+func (r *Repository) SearchCities(ctx context.Context, param entity.PaginateCitiesParam) ([]entity.City, int, error) {
 	var count int64
-	var res []City
+	var res []entity.City
 
 	query := r.db.WithContext(ctx)
 	if param.Keywords != "" {
@@ -74,7 +75,7 @@ func (r *Repository) SearchCities(ctx context.Context, param PaginateCitiesParam
 		query = query.Where("province_id = ?", param.ProvinceId)
 	}
 
-	err := query.Model(City{}).Count(&count).Error
+	err := query.Model(entity.City{}).Count(&count).Error
 	if err != nil {
 		return res, int(count), err
 	}
@@ -96,12 +97,12 @@ func (r *Repository) SearchCities(ctx context.Context, param PaginateCitiesParam
 	return res, int(count), nil
 }
 
-func (r *Repository) FindCityByID(ctx context.Context, id int) (City, error) {
-	var city City
+func (r *Repository) FindCityByID(ctx context.Context, id int) (entity.City, error) {
+	var city entity.City
 	err := r.db.WithContext(ctx).First(&city, id).Error
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return city, CityNotFoundError{}
+			return city, entity.CityNotFoundError{}
 		} else {
 			return city, err
 		}
@@ -110,9 +111,9 @@ func (r *Repository) FindCityByID(ctx context.Context, id int) (City, error) {
 	return city, nil
 }
 
-func (r *Repository) SearchSubdistricts(ctx context.Context, param PaginateSubdistrictsParam) ([]Subdistrict, int, error) {
+func (r *Repository) SearchSubdistricts(ctx context.Context, param entity.PaginateSubdistrictsParam) ([]entity.Subdistrict, int, error) {
 	var count int64
-	var res []Subdistrict
+	var res []entity.Subdistrict
 
 	query := r.db.WithContext(ctx)
 	if param.Keywords != "" {
@@ -127,7 +128,7 @@ func (r *Repository) SearchSubdistricts(ctx context.Context, param PaginateSubdi
 		query = query.Where("city_id = ?", param.CityId)
 	}
 
-	err := query.Model(Subdistrict{}).Count(&count).Error
+	err := query.Model(entity.Subdistrict{}).Count(&count).Error
 	if err != nil {
 		return res, int(count), err
 	}
@@ -149,12 +150,12 @@ func (r *Repository) SearchSubdistricts(ctx context.Context, param PaginateSubdi
 	return res, int(count), nil
 }
 
-func (r *Repository) FindSubdistrictByID(ctx context.Context, id int) (Subdistrict, error) {
-	var subdistrict Subdistrict
+func (r *Repository) FindSubdistrictByID(ctx context.Context, id int) (entity.Subdistrict, error) {
+	var subdistrict entity.Subdistrict
 	err := r.db.WithContext(ctx).First(&subdistrict, id).Error
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return subdistrict, SubdistrictNotFoundError{}
+			return subdistrict, entity.SubdistrictNotFoundError{}
 		} else {
 			return subdistrict, err
 		}
@@ -163,9 +164,9 @@ func (r *Repository) FindSubdistrictByID(ctx context.Context, id int) (Subdistri
 	return subdistrict, nil
 }
 
-func (r *Repository) SearchVillages(ctx context.Context, param PaginateVillagesParam) ([]Village, int, error) {
+func (r *Repository) SearchVillages(ctx context.Context, param entity.PaginateVillagesParam) ([]entity.Village, int, error) {
 	var count int64
-	var res []Village
+	var res []entity.Village
 
 	query := r.db.WithContext(ctx)
 	if param.Keywords != "" {
@@ -184,7 +185,7 @@ func (r *Repository) SearchVillages(ctx context.Context, param PaginateVillagesP
 		query = query.Where("subdistrict_id = ?", param.SubdistrictId)
 	}
 
-	err := query.Model(Village{}).Count(&count).Error
+	err := query.Model(entity.Village{}).Count(&count).Error
 	if err != nil {
 		return res, int(count), err
 	}
@@ -206,12 +207,12 @@ func (r *Repository) SearchVillages(ctx context.Context, param PaginateVillagesP
 	return res, int(count), nil
 }
 
-func (r *Repository) FindVillageByID(ctx context.Context, id int) (Village, error) {
-	var village Village
+func (r *Repository) FindVillageByID(ctx context.Context, id int) (entity.Village, error) {
+	var village entity.Village
 	err := r.db.WithContext(ctx).First(&village, id).Error
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return village, VillageNotFoundError{}
+			return village, entity.VillageNotFoundError{}
 		} else {
 			return village, err
 		}

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/entity"
 	"context"
 )
 
@@ -14,13 +15,13 @@ func NewUsecase(repo *Repository) *Usecase {
 	}
 }
 
-func (u *Usecase) GetProvinces(ctx context.Context, param PaginateProvincesParam) (PaginateResult[Province], error) {
+func (u *Usecase) GetProvinces(ctx context.Context, param entity.PaginateProvincesParam) (entity.PaginateResult[entity.Province], error) {
 	provinces, count, err := u.repo.SearchProvinces(ctx, param)
 	if err != nil {
-		return PaginateResult[Province]{}, err
+		return entity.PaginateResult[entity.Province]{}, err
 	}
 
-	return PaginateResult[Province]{
+	return entity.PaginateResult[entity.Province]{
 		Data:   provinces,
 		Limit:  param.Limit,
 		Offset: param.Offset,
@@ -28,17 +29,17 @@ func (u *Usecase) GetProvinces(ctx context.Context, param PaginateProvincesParam
 	}, nil
 }
 
-func (u *Usecase) PaginateProvinces(ctx context.Context, param PaginateProvincesParam) (PaginateResult[Province], error) {
+func (u *Usecase) PaginateProvinces(ctx context.Context, param entity.PaginateProvincesParam) (entity.PaginateResult[entity.Province], error) {
 	if param.Limit == 0 {
 		param.Limit = 10 // fallback to default 10 paginate
 	}
 
 	provinces, count, err := u.repo.SearchProvinces(ctx, param)
 	if err != nil {
-		return PaginateResult[Province]{}, err
+		return entity.PaginateResult[entity.Province]{}, err
 	}
 
-	return PaginateResult[Province]{
+	return entity.PaginateResult[entity.Province]{
 		Data:   provinces,
 		Limit:  param.Limit,
 		Offset: param.Offset,
@@ -46,17 +47,17 @@ func (u *Usecase) PaginateProvinces(ctx context.Context, param PaginateProvinces
 	}, nil
 }
 
-func (u *Usecase) GetProvince(ctx context.Context, id int) (Province, error) {
+func (u *Usecase) GetProvince(ctx context.Context, id int) (entity.Province, error) {
 	return u.repo.FindProvinceByID(ctx, id)
 }
 
-func (u *Usecase) GetCities(ctx context.Context, param PaginateCitiesParam) (PaginateResult[City], error) {
+func (u *Usecase) GetCities(ctx context.Context, param entity.PaginateCitiesParam) (entity.PaginateResult[entity.City], error) {
 	cities, count, err := u.repo.SearchCities(ctx, param)
 	if err != nil {
-		return PaginateResult[City]{}, err
+		return entity.PaginateResult[entity.City]{}, err
 	}
 
-	return PaginateResult[City]{
+	return entity.PaginateResult[entity.City]{
 		Data:   cities,
 		Limit:  param.Limit,
 		Offset: param.Offset,
@@ -64,17 +65,17 @@ func (u *Usecase) GetCities(ctx context.Context, param PaginateCitiesParam) (Pag
 	}, nil
 }
 
-func (u *Usecase) PaginateCities(ctx context.Context, param PaginateCitiesParam) (PaginateResult[City], error) {
+func (u *Usecase) PaginateCities(ctx context.Context, param entity.PaginateCitiesParam) (entity.PaginateResult[entity.City], error) {
 	if param.Limit == 0 {
 		param.Limit = 10 // fallback to default 10 paginate
 	}
 
 	cities, count, err := u.repo.SearchCities(ctx, param)
 	if err != nil {
-		return PaginateResult[City]{}, err
+		return entity.PaginateResult[entity.City]{}, err
 	}
 
-	return PaginateResult[City]{
+	return entity.PaginateResult[entity.City]{
 		Data:   cities,
 		Limit:  param.Limit,
 		Offset: param.Offset,
@@ -82,17 +83,17 @@ func (u *Usecase) PaginateCities(ctx context.Context, param PaginateCitiesParam)
 	}, nil
 }
 
-func (u *Usecase) GetCity(ctx context.Context, id int) (City, error) {
+func (u *Usecase) GetCity(ctx context.Context, id int) (entity.City, error) {
 	return u.repo.FindCityByID(ctx, id)
 }
 
-func (u *Usecase) GetSubdistricts(ctx context.Context, param PaginateSubdistrictsParam) (PaginateResult[Subdistrict], error) {
+func (u *Usecase) GetSubdistricts(ctx context.Context, param entity.PaginateSubdistrictsParam) (entity.PaginateResult[entity.Subdistrict], error) {
 	subdistricts, count, err := u.repo.SearchSubdistricts(ctx, param)
 	if err != nil {
-		return PaginateResult[Subdistrict]{}, err
+		return entity.PaginateResult[entity.Subdistrict]{}, err
 	}
 
-	return PaginateResult[Subdistrict]{
+	return entity.PaginateResult[entity.Subdistrict]{
 		Data:   subdistricts,
 		Limit:  param.Limit,
 		Offset: param.Offset,
@@ -100,17 +101,17 @@ func (u *Usecase) GetSubdistricts(ctx context.Context, param PaginateSubdistrict
 	}, nil
 }
 
-func (u *Usecase) PaginateSubdistricts(ctx context.Context, param PaginateSubdistrictsParam) (PaginateResult[Subdistrict], error) {
+func (u *Usecase) PaginateSubdistricts(ctx context.Context, param entity.PaginateSubdistrictsParam) (entity.PaginateResult[entity.Subdistrict], error) {
 	if param.Limit == 0 {
 		param.Limit = 10 // fallback to default 10 paginate
 	}
 
 	subdistricts, count, err := u.repo.SearchSubdistricts(ctx, param)
 	if err != nil {
-		return PaginateResult[Subdistrict]{}, err
+		return entity.PaginateResult[entity.Subdistrict]{}, err
 	}
 
-	return PaginateResult[Subdistrict]{
+	return entity.PaginateResult[entity.Subdistrict]{
 		Data:   subdistricts,
 		Limit:  param.Limit,
 		Offset: param.Offset,
@@ -118,17 +119,17 @@ func (u *Usecase) PaginateSubdistricts(ctx context.Context, param PaginateSubdis
 	}, nil
 }
 
-func (u *Usecase) GetSubdistrict(ctx context.Context, id int) (Subdistrict, error) {
+func (u *Usecase) GetSubdistrict(ctx context.Context, id int) (entity.Subdistrict, error) {
 	return u.repo.FindSubdistrictByID(ctx, id)
 }
 
-func (u *Usecase) GetVillages(ctx context.Context, param PaginateVillagesParam) (PaginateResult[Village], error) {
+func (u *Usecase) GetVillages(ctx context.Context, param entity.PaginateVillagesParam) (entity.PaginateResult[entity.Village], error) {
 	villages, count, err := u.repo.SearchVillages(ctx, param)
 	if err != nil {
-		return PaginateResult[Village]{}, err
+		return entity.PaginateResult[entity.Village]{}, err
 	}
 
-	return PaginateResult[Village]{
+	return entity.PaginateResult[entity.Village]{
 		Data:   villages,
 		Limit:  param.Limit,
 		Offset: param.Offset,
@@ -136,17 +137,17 @@ func (u *Usecase) GetVillages(ctx context.Context, param PaginateVillagesParam) 
 	}, nil
 }
 
-func (u *Usecase) PaginateVillages(ctx context.Context, param PaginateVillagesParam) (PaginateResult[Village], error) {
+func (u *Usecase) PaginateVillages(ctx context.Context, param entity.PaginateVillagesParam) (entity.PaginateResult[entity.Village], error) {
 	if param.Limit == 0 {
 		param.Limit = 10 // fallback to default 10 paginate
 	}
 
 	villages, count, err := u.repo.SearchVillages(ctx, param)
 	if err != nil {
-		return PaginateResult[Village]{}, err
+		return entity.PaginateResult[entity.Village]{}, err
 	}
 
-	return PaginateResult[Village]{
+	return entity.PaginateResult[entity.Village]{
 		Data:   villages,
 		Limit:  param.Limit,
 		Offset: param.Offset,
@@ -154,32 +155,32 @@ func (u *Usecase) PaginateVillages(ctx context.Context, param PaginateVillagesPa
 	}, nil
 }
 
-func (u *Usecase) GetVillage(ctx context.Context, id int) (Village, error) {
+func (u *Usecase) GetVillage(ctx context.Context, id int) (entity.Village, error) {
 	return u.repo.FindVillageByID(ctx, id)
 }
 
-func (u *Usecase) GetTotals(ctx context.Context) (GetTotalResult, error) {
-	var result GetTotalResult
+func (u *Usecase) GetTotals(ctx context.Context) (entity.GetTotalResult, error) {
+	var result entity.GetTotalResult
 	var err error
 
-	_, result.Provinces, err = u.repo.SearchProvinces(ctx, PaginateProvincesParam{})
+	_, result.Provinces, err = u.repo.SearchProvinces(ctx, entity.PaginateProvincesParam{})
 	if err != nil {
-		return GetTotalResult{}, err
+		return entity.GetTotalResult{}, err
 	}
 
-	_, result.Cities, err = u.repo.SearchCities(ctx, PaginateCitiesParam{})
+	_, result.Cities, err = u.repo.SearchCities(ctx, entity.PaginateCitiesParam{})
 	if err != nil {
-		return GetTotalResult{}, err
+		return entity.GetTotalResult{}, err
 	}
 
-	_, result.Subdistricts, err = u.repo.SearchSubdistricts(ctx, PaginateSubdistrictsParam{})
+	_, result.Subdistricts, err = u.repo.SearchSubdistricts(ctx, entity.PaginateSubdistrictsParam{})
 	if err != nil {
-		return GetTotalResult{}, err
+		return entity.GetTotalResult{}, err
 	}
 
-	_, result.Villages, err = u.repo.SearchVillages(ctx, PaginateVillagesParam{})
+	_, result.Villages, err = u.repo.SearchVillages(ctx, entity.PaginateVillagesParam{})
 	if err != nil {
-		return GetTotalResult{}, err
+		return entity.GetTotalResult{}, err
 	}
 
 	return result, nil
