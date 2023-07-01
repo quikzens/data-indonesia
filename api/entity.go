@@ -141,6 +141,13 @@ type PaginateVillagesParam struct {
 	SubdistrictId int
 }
 
+type GetTotalResult struct {
+	Provinces    int `json:"provinces"`
+	Cities       int `json:"cities"`
+	Subdistricts int `json:"subdistricts"`
+	Villages     int `json:"villages"`
+}
+
 type ProvinceNotFoundError struct{}
 
 func (e ProvinceNotFoundError) Error() string {

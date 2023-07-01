@@ -44,5 +44,7 @@ func NewRouter(h *Handler) chi.Router {
 		r.Get("/paginate", h.PaginateVillages)
 	})
 
+	r.Get("/totals", h.GetTotals)
+
 	return r
 }

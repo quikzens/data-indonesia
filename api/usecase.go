@@ -157,3 +157,30 @@ func (u *Usecase) PaginateVillages(ctx context.Context, param PaginateVillagesPa
 func (u *Usecase) GetVillage(ctx context.Context, id int) (Village, error) {
 	return u.repo.FindVillageByID(ctx, id)
 }
+
+func (u *Usecase) GetTotals(ctx context.Context) (GetTotalResult, error) {
+	var result GetTotalResult
+	var err error
+
+	_, result.Provinces, err = u.repo.SearchProvinces(ctx, PaginateProvincesParam{})
+	if err != nil {
+		return GetTotalResult{}, err
+	}
+
+	_, result.Cities, err = u.repo.SearchCities(ctx, PaginateCitiesParam{})
+	if err != nil {
+		return GetTotalResult{}, err
+	}
+
+	_, result.Subdistricts, err = u.repo.SearchSubdistricts(ctx, PaginateSubdistrictsParam{})
+	if err != nil {
+		return GetTotalResult{}, err
+	}
+
+	_, result.Villages, err = u.repo.SearchVillages(ctx, PaginateVillagesParam{})
+	if err != nil {
+		return GetTotalResult{}, err
+	}
+
+	return result, nil
+}
