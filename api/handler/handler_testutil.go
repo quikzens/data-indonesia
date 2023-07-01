@@ -1,23 +1,25 @@
-package main
+package handler
 
 import (
-	"api/helper"
 	"api/repository"
 	"api/usecase"
 	"bytes"
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
 	"github.com/joho/godotenv"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
-type testServer struct {
+type TestServer struct {
 	*httptest.Server
 }
 
-func (ts *testServer) get(t *testing.T, urlPath string) (int, http.Header, string) {
+func (ts *TestServer) Get(t *testing.T, urlPath string) (int, http.Header, string) {
 	rs, err := ts.Client().Get(ts.URL + urlPath)
 	if err != nil {
 		t.Fatal(err)
@@ -33,25 +35,18 @@ func (ts *testServer) get(t *testing.T, urlPath string) (int, http.Header, strin
 	return rs.StatusCode, rs.Header, string(body)
 }
 
-func newTestServer(t *testing.T) *testServer {
+func NewTestServer(t *testing.T) *TestServer {
 	_ = godotenv.Load()
-
-	db := InitGormDatabase()
+	db, err := gorm.Open(postgres.Open(os.Getenv("DATABASE_URL")), &gorm.Config{
+		SkipDefaultTransaction: true,
+	})
+	if err != nil {
+		panic(err)
+	}
 	r := repository.NewRepository(db)
 	u := usecase.NewUsecase(r)
 	h := NewHandler(u)
 	router := NewRouter(h)
-
 	ts := httptest.NewServer(router)
-	return &testServer{ts}
-}
-
-func TestHealthz(t *testing.T) {
-	ts := newTestServer(t)
-	defer ts.Close()
-
-	statusCode, _, respBody := ts.get(t, "/healthz")
-
-	helper.Equal(t, statusCode, http.StatusOK)
-	helper.Equal(t, respBody, "ok")
+	return &TestServer{ts}
 }

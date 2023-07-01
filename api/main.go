@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/config"
 	"context"
 	"fmt"
 	"log"
@@ -19,7 +20,7 @@ func main() {
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 	done := make(chan bool, 1)
 
-	server := InitHttpHandler(fmt.Sprintf(":%s", os.Getenv("API_PORT")))
+	server := config.InitHttpHandler(fmt.Sprintf(":%s", os.Getenv("API_PORT")))
 
 	go func() {
 		log.Println("Server running on port:", os.Getenv("API_PORT"))
